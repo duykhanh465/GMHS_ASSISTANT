@@ -1,0 +1,18 @@
+# Laravel
+backend/.env
+backend/vendor/
+backend/storage/logs/
+backend/bootstrap/cache/
+
+# Vue 3
+frontend/node_modules/
+frontend/dist/
+
+# Sensitive clinical source files
+docs/clinical/excel-original/
+
+# Editor and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

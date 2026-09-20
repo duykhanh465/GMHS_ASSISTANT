@@ -10,25 +10,27 @@
 
 ## 1. Tài liệu và thiết kế
 
-- [ ] Đã tạo `mvp-scope.md`.
-- [ ] Đã đọc và hiểu phạm vi MVP.
-- [ ] Đã chốt ERD.
-- [ ] Đã lưu ERD vào `docs/database/`.
-- [ ] Đã đặt file Excel gốc vào `docs/clinical/excel-original/`.
+- [x] Đã tạo `mvp-scope.md`.
+- [x] Đã đọc và hiểu phạm vi MVP.
+- [x] Đã chốt ERD.
+- [x] Đã lưu ERD vào `docs/database/`.
+- [x] Đã đặt file Excel gốc vào `docs/clinical/excel-original/`.
 - [ ] Đã tạo data dictionary từ Excel.
 
 ---
 
 ## 2. Môi trường phát triển
 
-- [ ] Đã cài Laragon.
-- [ ] PHP chạy được bằng lệnh `php -v`.
-- [ ] Composer chạy được bằng lệnh `composer -V`.
-- [ ] MySQL chạy được bằng lệnh `mysql --version`.
-- [ ] Đã tạo database `gmhs_assistant`.
-- [ ] Đã khởi tạo Git repository.
-- [ ] Đã tạo Laravel backend.
-- [ ] Đã tạo Vue 3 frontend.
+- [x] Đã cài Laragon.
+- [x] PHP chạy được bằng lệnh `php -v`.
+- [x] Composer chạy được bằng lệnh `composer -V`.
+- [x] MySQL chạy được bằng lệnh `mysql --version`.
+- [x] Đã tạo database `gmhs_assistant`.
+- [x] Laravel đã kết nối MySQL và migration nền chạy thành công.
+- [x] Đã khởi tạo Git repository và đẩy branch `main` lên GitHub.
+- [x] Đã tạo Laravel backend.
+- [x] Đã tạo Vue 3 frontend.
+- [x] Vue type-check và production build chạy thành công.
 
 ---
 

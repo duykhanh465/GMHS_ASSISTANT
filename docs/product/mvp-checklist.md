@@ -15,7 +15,7 @@
 - [x] Đã chốt ERD.
 - [x] Đã lưu ERD vào `docs/database/`.
 - [x] Đã đặt file Excel gốc vào `docs/clinical/excel-original/`.
-- [ ] Đã tạo data dictionary từ Excel.
+- [x] Đã tạo data dictionary từ Excel.
 
 ---
 
@@ -36,15 +36,15 @@
 
 ## 3. Authentication
 
-- [ ] Đã cài Laravel Sanctum.
-- [ ] Có migration thêm role vào users.
-- [ ] Có role `admin`.
-- [ ] Có role `doctor`.
-- [ ] Có admin seed sẵn.
-- [ ] Có doctor seed sẵn.
-- [ ] Có API login.
-- [ ] Có API logout.
-- [ ] Route API được bảo vệ.
+- [x] Đã cài Laravel Sanctum.
+- [x] Có migration thêm role vào users.
+- [x] Có role `admin`.
+- [x] Có role `doctor`.
+- [x] Có admin seed sẵn.
+- [x] Có doctor seed sẵn.
+- [x] Có API login.
+- [x] Có API logout.
+- [x] Route API được bảo vệ.
 - [ ] Vue có trang login.
 - [ ] Vue có chức năng logout.
 

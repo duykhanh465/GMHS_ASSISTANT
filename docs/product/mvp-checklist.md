@@ -52,10 +52,10 @@
 
 ## 4. Patients / Cases
 
-- [ ] Có migration bảng patients.
-- [ ] patients có `user_id`.
-- [ ] patients có soft delete.
-- [ ] Có relationship User → Patients.
+- [x] Có migration bảng patients.
+- [x] patients có `user_id`.
+- [x] patients có soft delete.
+- [x] Có relationship User → Patients.
 - [ ] Có API danh sách case.
 - [ ] Có API tạo case.
 - [ ] Có API sửa case.
@@ -90,12 +90,12 @@
 
 ## 6. Dữ liệu thuốc
 
-- [ ] Có bảng drug_categories.
-- [ ] Có bảng drugs.
-- [ ] Có bảng drug_dilutions.
-- [ ] Có bảng ventilator_presets.
-- [ ] Có bảng sources.
-- [ ] Có bảng sourceables.
+- [x] Có bảng drug_categories.
+- [x] Có bảng drugs.
+- [x] Có bảng drug_dilutions.
+- [x] Có bảng ventilator_presets.
+- [x] Có bảng sources.
+- [ ] Có bảng sourceables với các cột liên kết nguồn (hiện bảng mới có `id` và timestamps).
 - [ ] Có seeder danh mục thuốc.
 - [ ] Có seeder thuốc khởi mê.
 - [ ] Có seeder thuốc giãn cơ.
@@ -108,12 +108,12 @@
 
 ## 7. Calculation history
 
-- [ ] Có bảng patient_calculations.
-- [ ] Có `input_snapshot`.
-- [ ] Có `ventilator_result`.
-- [ ] Có `drug_result`.
-- [ ] Có `vasopressor_result`.
-- [ ] Có `engine_version`.
+- [x] Có bảng patient_calculations.
+- [x] Có `input_snapshot`.
+- [x] Có `ventilator_result`.
+- [x] Có `drug_result`.
+- [x] Có `vasopressor_result`.
+- [x] Có `engine_version`.
 - [ ] Có API tính toán.
 - [ ] Có API lưu calculation.
 - [ ] Có API lịch sử calculation.

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Drug extends Model
@@ -45,5 +46,12 @@ class Drug extends Model
     public function dilutions(): HasMany
     {
         return $this->hasMany(DrugDilution::class);
+    }
+
+    public function sources(): MorphToMany
+    {
+        return $this->morphToMany(Source::class, 'sourceable')
+            ->withPivot('priority')
+            ->withTimestamps();
     }
 }

@@ -95,7 +95,7 @@
 - [x] Có bảng drug_dilutions.
 - [x] Có bảng ventilator_presets.
 - [x] Có bảng sources.
-- [ ] Có bảng sourceables với các cột liên kết nguồn (hiện bảng mới có `id` và timestamps).
+- [x] Có bảng sourceables với các cột liên kết nguồn.
 - [ ] Có seeder danh mục thuốc.
 - [ ] Có seeder thuốc khởi mê.
 - [ ] Có seeder thuốc giãn cơ.

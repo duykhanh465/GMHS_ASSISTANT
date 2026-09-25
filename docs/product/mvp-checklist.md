@@ -71,20 +71,20 @@
 
 ## 5. Calculation engine
 
-- [ ] Đã tạo `WeightCalculator`.
-- [ ] Đã tính BMI.
-- [ ] Đã tính IBW.
-- [ ] Đã tính PBW.
-- [ ] Đã tính AdjBW.
-- [ ] Đã tạo `FluidCalculator`.
-- [ ] Đã tính dịch duy trì 4-2-1.
-- [ ] Đã tạo `VentilatorCalculator`.
-- [ ] Đã xử lý bệnh cảnh thường quy.
-- [ ] Đã xử lý Hen/COPD.
-- [ ] Đã xử lý ARDS.
-- [ ] Đã xử lý nội soi CO₂.
-- [ ] Golden test case khớp Excel.
-- [ ] Toàn bộ unit test calculator chạy thành công.
+- [x] Đã tạo `WeightCalculator`.
+- [x] Đã tính BMI.
+- [x] Đã tính IBW.
+- [x] Đã tính PBW.
+- [x] Đã tính AdjBW.
+- [x] Đã tạo `FluidCalculator`.
+- [x] Đã tính dịch duy trì 4-2-1.
+- [x] Đã tạo `VentilatorCalculator`.
+- [x] Đã xử lý bệnh cảnh thường quy.
+- [x] Đã xử lý Hen/COPD.
+- [x] Đã xử lý ARDS.
+- [x] Đã xử lý nội soi CO₂.
+- [x] Golden test case khớp Excel.
+- [x] Toàn bộ unit test calculator chạy thành công.
 
 ---
 

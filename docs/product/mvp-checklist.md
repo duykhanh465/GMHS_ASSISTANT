@@ -114,10 +114,10 @@
 - [x] Có `drug_result`.
 - [x] Có `vasopressor_result`.
 - [x] Có `engine_version`.
-- [ ] Có API tính toán.
-- [ ] Có API lưu calculation.
-- [ ] Có API lịch sử calculation.
-- [ ] Sửa case không làm thay đổi calculation cũ.
+- [x] Có API tính toán.
+- [x] Có API lưu calculation.
+- [x] Có API lịch sử calculation.
+- [x] Sửa case không làm thay đổi calculation cũ.
 - [ ] Vue hiển thị lịch sử calculation.
 
 ---

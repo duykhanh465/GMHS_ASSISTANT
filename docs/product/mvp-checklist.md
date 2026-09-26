@@ -56,13 +56,13 @@
 - [x] patients có `user_id`.
 - [x] patients có soft delete.
 - [x] Có relationship User → Patients.
-- [ ] Có API danh sách case.
-- [ ] Có API tạo case.
-- [ ] Có API sửa case.
-- [ ] Có API xóa mềm case.
-- [ ] Có patient policy.
-- [ ] Doctor chỉ xem được case của chính họ.
-- [ ] Admin xem được toàn bộ case.
+- [x] Có API danh sách case.
+- [x] Có API tạo case.
+- [x] Có API sửa case.
+- [x] Có API xóa mềm case.
+- [x] Có patient policy.
+- [x] Doctor chỉ xem được case của chính họ.
+- [x] Admin xem được toàn bộ case.
 - [ ] Vue có danh sách case.
 - [ ] Vue có tìm kiếm case.
 - [ ] Vue có form tạo/chỉnh sửa case.
@@ -96,12 +96,12 @@
 - [x] Có bảng ventilator_presets.
 - [x] Có bảng sources.
 - [x] Có bảng sourceables với các cột liên kết nguồn.
-- [ ] Có seeder danh mục thuốc.
-- [ ] Có seeder thuốc khởi mê.
-- [ ] Có seeder thuốc giãn cơ.
-- [ ] Có seeder vận mạch.
-- [ ] Có seeder ventilator presets.
-- [ ] Dữ liệu đã đối chiếu với Excel.
+- [x] Có seeder danh mục thuốc.
+- [x] Có seeder thuốc khởi mê.
+- [x] Có seeder thuốc giãn cơ.
+- [x] Có seeder vận mạch.
+- [x] Có seeder ventilator presets.
+- [x] Dữ liệu đã đối chiếu với Excel.
 - [ ] Mỗi dữ liệu quan trọng có nguồn tham khảo.
 
 ---

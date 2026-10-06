@@ -17,6 +17,14 @@ class PatientController extends Controller
             ? Patient::query()
             : Patient::where('user_id', $user->id);
 
+        if (request()->filled('search')) {
+            $s = request()->string('search');
+            $query->where(function ($q) use ($s) {
+                $q->where('code', 'like', "%{$s}%")
+                  ->orWhere('full_name', 'like', "%{$s}%");
+            });
+        }
+
         return response()->json($query->latest()->paginate(20));
     }
 

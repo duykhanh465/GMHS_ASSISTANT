@@ -45,8 +45,8 @@
 - [x] Có API login.
 - [x] Có API logout.
 - [x] Route API được bảo vệ.
-- [ ] Vue có trang login.
-- [ ] Vue có chức năng logout.
+- [x] Vue có trang login.
+- [x] Vue có chức năng logout.
 
 ---
 
@@ -63,9 +63,9 @@
 - [x] Có patient policy.
 - [x] Doctor chỉ xem được case của chính họ.
 - [x] Admin xem được toàn bộ case.
-- [ ] Vue có danh sách case.
-- [ ] Vue có tìm kiếm case.
-- [ ] Vue có form tạo/chỉnh sửa case.
+- [x] Vue có danh sách case.
+- [x] Vue có tìm kiếm case.
+- [x] Vue có form tạo/chỉnh sửa case.
 
 ---
 
@@ -118,42 +118,42 @@
 - [x] Có API lưu calculation.
 - [x] Có API lịch sử calculation.
 - [x] Sửa case không làm thay đổi calculation cũ.
-- [ ] Vue hiển thị lịch sử calculation.
+- [x] Vue hiển thị lịch sử calculation.
 
 ---
 
 ## 8. Responsive user interface
 
-- [ ] Có desktop sidebar.
-- [ ] Có mobile header.
-- [ ] Có mobile drawer.
-- [ ] Có mobile bottom navigation.
-- [ ] Có form patient responsive.
-- [ ] Có dashboard overview.
-- [ ] Có trang máy thở.
-- [ ] Có trang gây mê.
-- [ ] Có trang vận mạch.
-- [ ] Có clinical disclaimer.
-- [ ] Test ở mobile width 375px.
-- [ ] Test ở tablet width 768px.
-- [ ] Test ở desktop width 1440px.
+- [x] Có desktop sidebar.
+- [x] Có mobile header.
+- [x] Có mobile drawer.
+- [x] Có mobile bottom navigation.
+- [x] Có form patient responsive.
+- [x] Có dashboard overview.
+- [x] Có trang máy thở.
+- [x] Có trang gây mê.
+- [x] Có trang vận mạch.
+- [x] Có clinical disclaimer.
+- [x] Test ở mobile width 375px.
+- [x] Test ở tablet width 768px.
+- [x] Test ở desktop width 1440px.
 
 ---
 
 ## 9. Kịch bản demo cuối cùng
 
-- [ ] Đăng nhập với doctor.
-- [ ] Tạo case `DEMO-001`.
-- [ ] Nhập nữ, 80 tuổi, 150 cm, 65 kg, ASA II.
-- [ ] Chọn bệnh cảnh thường quy.
-- [ ] Tính BMI = 28.9.
-- [ ] Tính PBW = 43.3 kg.
-- [ ] Tính AdjBW = 52 kg.
-- [ ] Tính dịch duy trì = 105 mL/giờ.
-- [ ] Hiển thị Vt = 260–303 mL.
-- [ ] Hiển thị RR = 14 lần/phút.
-- [ ] Hiển thị PEEP = 5 cmH₂O.
-- [ ] Hiển thị FiO₂ = 40–60%.
-- [ ] Lưu calculation snapshot.
-- [ ] Mở lại calculation snapshot thành công.
-- [ ] Doctor khác bị từ chối khi truy cập case này.
+- [x] Đăng nhập với doctor.
+- [x] Tạo case `DEMO-001`.
+- [x] Nhập nữ, 80 tuổi, 150 cm, 65 kg, ASA II.
+- [x] Chọn bệnh cảnh thường quy.
+- [x] Tính BMI = 28.9.
+- [x] Tính PBW = 43.3 kg.
+- [x] Tính AdjBW = 52 kg.
+- [x] Tính dịch duy trì = 105 mL/giờ.
+- [x] Hiển thị Vt = 260–303 mL.
+- [x] Hiển thị RR = 14 lần/phút.
+- [x] Hiển thị PEEP = 5 cmH₂O.
+- [x] Hiển thị FiO₂ = 40–60%.
+- [x] Lưu calculation snapshot.
+- [x] Mở lại calculation snapshot thành công.
+- [x] Doctor khác bị từ chối khi truy cập case này.

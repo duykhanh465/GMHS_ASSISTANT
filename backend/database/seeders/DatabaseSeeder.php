@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             DrugCategorySeeder::class,
             DrugSeeder::class,
             VentilatorPresetSeeder::class,
+            SourceSeeder::class,
         ]);
     }
 }

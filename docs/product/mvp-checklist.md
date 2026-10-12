@@ -102,7 +102,7 @@
 - [x] Có seeder vận mạch.
 - [x] Có seeder ventilator presets.
 - [x] Dữ liệu đã đối chiếu với Excel.
-- [ ] Mỗi dữ liệu quan trọng có nguồn tham khảo.
+- [x] Mỗi dữ liệu quan trọng có nguồn tham khảo.
 
 ---
 

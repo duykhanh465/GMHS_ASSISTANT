@@ -1,24 +1,44 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useSettingsStore } from '@/stores/settings'
+import { t } from '@/i18n'
+import type { Locale } from '@/i18n'
+import { computed } from 'vue'
+import {
+  LayoutDashboard,
+  Users,
+  Syringe,
+  Wind,
+  HeartPulse,
+  Pill,
+  Bone,
+  Siren,
+  Calculator,
+  BookOpen,
+  Settings,
+} from 'lucide-vue-next'
+import logoUrl from '@/assets/logo-gmhs.svg'
 
 defineEmits(['close'])
 const router = useRouter()
 const auth = useAuthStore()
+const settings = useSettingsStore()
+const tx = computed(() => (k: string) => t(settings.locale as Locale, k))
 
-const menu = [
-  { label: 'Tổng quan', path: '/', icon: '◧' },
-  { label: 'Bệnh nhân', path: '/patients', icon: '👤' },
-  { label: 'Gây mê', path: '/anesthesia', icon: '💉' },
-  { label: 'Máy thở', path: '/ventilator', icon: '🫁' },
-  { label: 'Vận mạch', path: '/vasopressor', icon: '❤️' },
-  { label: 'Giảm đau & PONV', path: '/pain', icon: '💊' },
-  { label: 'Gây tê tủy sống', path: '/spinal', icon: '🦴' },
-  { label: 'CRISIS', path: '/crisis', icon: '🚨' },
-  { label: 'Công thức', path: '/formulas', icon: '📋' },
-  { label: 'Tài liệu tham khảo', path: '/references', icon: '📚' },
-  { label: 'Cài đặt', path: '/settings', icon: '⚙️' },
-]
+const menu = computed(() => [
+  { label: tx.value('nav_overview'), path: '/', icon: LayoutDashboard },
+  { label: tx.value('nav_patients'), path: '/patients', icon: Users },
+  { label: tx.value('nav_anesthesia'), path: '/anesthesia', icon: Syringe },
+  { label: tx.value('nav_ventilator'), path: '/ventilator', icon: Wind },
+  { label: tx.value('nav_vasopressor'), path: '/vasopressor', icon: HeartPulse },
+  { label: tx.value('nav_pain'), path: '/pain', icon: Pill },
+  { label: tx.value('nav_spinal'), path: '/spinal', icon: Bone },
+  { label: tx.value('nav_crisis'), path: '/crisis', icon: Siren },
+  { label: tx.value('nav_formulas'), path: '/formulas', icon: Calculator },
+  { label: tx.value('nav_references'), path: '/references', icon: BookOpen },
+  { label: tx.value('nav_settings'), path: '/settings', icon: Settings },
+])
 
 async function onLogout() {
   await auth.logout()
@@ -28,14 +48,8 @@ async function onLogout() {
 
 <template>
   <aside class="w-60 bg-[#0f2a4a] text-white flex flex-col min-h-screen shrink-0">
-    <div class="px-4 py-4 border-b border-white/10">
-      <div class="flex items-center gap-2">
-        <span class="w-8 h-8 rounded bg-white/20 flex items-center justify-center text-sm">♡</span>
-        <div>
-          <div class="font-bold text-sm leading-none">GMHS</div>
-          <div class="text-[10px] tracking-widest opacity-70">ASSISTANT</div>
-        </div>
-      </div>
+    <div class="px-3 py-3 border-b border-white/10 flex items-center">
+      <img :src="logoUrl" alt="GMHS Assistant" class="h-8 w-auto object-contain" />
     </div>
 
     <nav class="flex-1 py-2 space-y-0.5 overflow-y-auto">
@@ -47,7 +61,7 @@ async function onLogout() {
         active-class="bg-white/15 font-medium"
         @click="$emit('close')"
       >
-        <span class="w-5 text-center text-xs">{{ item.icon }}</span>
+        <component :is="item.icon" class="w-4 h-4 shrink-0 opacity-80" />
         <span class="text-[13px]">{{ item.label }}</span>
       </router-link>
     </nav>

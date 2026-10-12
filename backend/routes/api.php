@@ -14,4 +14,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/drugs', [\App\Http\Controllers\Api\DrugController::class, 'index']);
     Route::get('/drugs/{drug}', [\App\Http\Controllers\Api\DrugController::class, 'show']);
     Route::get('/ventilator-presets', [\App\Http\Controllers\Api\VentilatorPresetController::class, 'index']);
+    Route::get('/sources', [\App\Http\Controllers\Api\SourceController::class, 'index']);
 });

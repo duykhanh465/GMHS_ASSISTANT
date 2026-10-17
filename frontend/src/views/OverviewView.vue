@@ -4,14 +4,11 @@ import api from '@/api/client'
 import ClinicalDisclaimer from '@/components/ClinicalDisclaimer.vue'
 import { Wind, Syringe, HeartPulse } from 'lucide-vue-next'
 import { useSettingsStore } from '@/stores/settings'
-import { useAuthStore } from '@/stores/auth'
 import { t } from '@/i18n'
 import type { Locale } from '@/i18n'
 
 const settings = useSettingsStore()
-const auth = useAuthStore()
 const tx = computed(() => (k: string) => t(settings.locale as Locale, k))
-const debugUser = computed(() => auth.user ? `${auth.user.email} (${auth.user.role})` : 'chưa load')
 
 interface Patient {
   id: number; code: string; full_name: string; age: number
@@ -44,7 +41,6 @@ async function fetchPatients() {
     }
   } catch (e: any) {
     const status = e.response?.status
-    console.error('[Overview] GET /patients failed', status, e.response?.data || e.message)
     if (status === 401) error.value = 'Phiên hết hạn — đăng nhập lại.'
     else if (status === 403) error.value = 'Không có quyền xem (403).'
     else error.value = e.response?.data?.message || e.message || 'Không tải được danh sách bệnh nhân'
@@ -115,7 +111,6 @@ onMounted(fetchPatients)
     <div v-if="error && !patient" class="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">{{ error }} <router-link to="/login" class="underline">Đăng nhập lại</router-link> · <router-link to="/patients" class="underline">Sang Bệnh nhân</router-link></div>
     <div v-if="!patient && !error" class="text-sm text-slate-500 dark:text-slate-400 space-y-1">
       <div>{{ tx('overview_no_patient') }}</div>
-      <div class="text-xs">Đang đăng nhập: <b>{{ debugUser }}</b> · Tìm thấy {{ patients.length }} case. Nếu là Doctor thì chỉ thấy case do mình tạo; Admin thấy hết. <router-link to="/patients" class="underline text-[#0f2a4a]">Sang Bệnh nhân →</router-link></div>
     </div>
 
     <template v-if="patient">

@@ -7,7 +7,7 @@ const drawerOpen = ref(false)
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-100 flex">
+  <div class="min-h-screen bg-slate-100 dark:bg-slate-950 flex">
     <!-- Desktop sidebar -->
     <AppSidebar class="hidden lg:flex" />
 

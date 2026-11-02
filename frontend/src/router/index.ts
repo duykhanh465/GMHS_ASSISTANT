@@ -19,6 +19,7 @@ const router = createRouter({
     { path: '/formulas', name: 'formulas', component: () => import('@/views/FormulasView.vue') },
     { path: '/references', name: 'references', component: () => import('@/views/ReferencesView.vue') },
     { path: '/settings', name: 'settings', component: () => import('@/views/SettingsView.vue') },
+    { path: '/admin', name: 'admin', component: () => import('@/views/AdminView.vue'), meta: { admin: true } },
     {
       path: '/about',
       name: 'about',
@@ -31,9 +32,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  const token = localStorage.getItem('gmhs_token')
+  const token = sessionStorage.getItem('gmhs_token')
   if (to.path !== '/login' && !token) return '/login'
   if (to.path === '/login' && token) return '/'
+  if (to.meta.admin && sessionStorage.getItem('gmhs_role') !== 'admin') return '/'
 })
 
 export default router

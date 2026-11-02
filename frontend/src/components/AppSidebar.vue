@@ -17,6 +17,7 @@ import {
   Calculator,
   BookOpen,
   Settings,
+  Shield,
 } from 'lucide-vue-next'
 import logoUrl from '@/assets/logo-gmhs.svg'
 
@@ -37,6 +38,7 @@ const menu = computed(() => [
   { label: tx.value('nav_crisis'), path: '/crisis', icon: Siren },
   { label: tx.value('nav_formulas'), path: '/formulas', icon: Calculator },
   { label: tx.value('nav_references'), path: '/references', icon: BookOpen },
+  ...(auth.isAdmin() ? [{ label: tx.value('nav_admin'), path: '/admin', icon: Shield }] : []),
   { label: tx.value('nav_settings'), path: '/settings', icon: Settings },
 ])
 
@@ -74,7 +76,7 @@ async function onLogout() {
           <div class="opacity-60 text-[11px]">{{ auth.user?.name || 'Dr Tom' }}</div>
         </div>
       </div>
-      <button @click="onLogout" class="w-full text-xs py-1.5 rounded bg-white/10 hover:bg-white/20">Đăng xuất</button>
+      <button @click="onLogout" class="w-full text-xs py-1.5 rounded bg-white/10 hover:bg-white/20">{{ tx('settings_logout') }}</button>
     </div>
   </aside>
 </template>

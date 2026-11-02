@@ -14,12 +14,14 @@ class DrugCategory extends Model
         'name',
         'slug',
         'sort_order',
+        'translations',
         'is_active',
     ];
 
     protected function casts(): array
     {
         return [
+            'translations' => 'array',
             'is_active' => 'boolean',
         ];
     }

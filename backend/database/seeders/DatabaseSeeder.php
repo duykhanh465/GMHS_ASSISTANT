@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             DrugSeeder::class,
             VentilatorPresetSeeder::class,
             SourceSeeder::class,
+            SpinalProtocolSeeder::class,
+            EmergencyProtocolSeeder::class,
         ]);
     }
 }

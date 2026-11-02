@@ -26,12 +26,14 @@ class Drug extends Model
         'timing',
         'monitoring',
         'warning',
+        'translations',
         'is_active',
     ];
 
     protected function casts(): array
     {
         return [
+            'translations' => 'array',
             'dose_min_per_kg' => 'decimal:3',
             'dose_max_per_kg' => 'decimal:3',
             'is_active' => 'boolean',

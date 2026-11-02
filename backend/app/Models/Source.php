@@ -15,12 +15,14 @@ class Source extends Model
         'document_type',
         'priority',
         'notes',
+        'translations',
         'source_updated_at',
     ];
 
     protected function casts(): array
     {
         return [
+            'translations' => 'array',
             'source_updated_at' => 'date',
         ];
     }
@@ -35,6 +37,20 @@ class Source extends Model
     public function ventilatorPresets(): MorphToMany
     {
         return $this->morphedByMany(VentilatorPreset::class, 'sourceable')
+            ->withPivot('priority')
+            ->withTimestamps();
+    }
+
+    public function spinalProtocols(): MorphToMany
+    {
+        return $this->morphedByMany(SpinalProtocol::class, 'sourceable')
+            ->withPivot('priority')
+            ->withTimestamps();
+    }
+
+    public function emergencyProtocols(): MorphToMany
+    {
+        return $this->morphedByMany(EmergencyProtocol::class, 'sourceable')
             ->withPivot('priority')
             ->withTimestamps();
     }

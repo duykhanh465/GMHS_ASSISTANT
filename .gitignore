@@ -39,6 +39,9 @@ coverage/
 # Sensitive clinical source files
 docs/clinical/excel-original/
 
+# Local temp dumps (Excel text exports, throwaway scripts)
+Temp/
+
 # Editor and operating system
 .vscode/
 .idea/

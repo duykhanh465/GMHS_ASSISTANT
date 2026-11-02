@@ -1,23 +1,47 @@
 <script setup lang="ts">
+import { ref, onMounted, watch, computed } from 'vue'
+import api from '@/api/client'
 import ClinicalDisclaimer from '@/components/ClinicalDisclaimer.vue'
-const cards = [
-  { title: 'Ngừng tuần hoàn', color: 'red', steps: ['Gọi hỗ trợ, bắt đầu CPR', 'Adrenaline 1mg IV mỗi 3–5 phút', 'Sốc điện nếu VF/VT', 'Amiodarone 300mg sau sốc lần 3'] },
-  { title: 'Sốc phản vệ', color: 'amber', steps: ['Ngừng thuốc nghi ngờ', 'Adrenaline 0.5mg IM (hoặc 50mcg IV)', 'Truyền dịch nhanh, O2 100%', 'Hydrocortisone, antihistamine'] },
-  { title: 'Co thắt phế quản', color: 'sky', steps: ['Tăng FiO2, thủ công bóp bóng', 'Salbutamol khí dung/IV', 'Adrenaline nếu nặng', 'Magnesium sulfate nếu kháng trị'] },
-  { title: 'Tăng thân nhiệt ác tính', color: 'rose', steps: ['Ngừng sevo, dantrolene 2.5mg/kg', 'Tăng thông khí, hạ thân nhiệt', 'NaHCO3 nếu toan nặng', 'Chuyển ICU'] },
-]
+import { useSettingsStore } from '@/stores/settings'
+import { t } from '@/i18n'
+import type { Locale } from '@/i18n'
+
+const settings = useSettingsStore()
+const tx = computed(() => (k: string) => t(settings.locale as Locale, k))
+
+const rows = ref<any[]>([])
+const loading = ref(false)
+
+async function fetch() {
+  loading.value = true
+  try {
+    const { data } = await api.get('/emergency-protocols', { params: { locale: settings.locale } })
+    rows.value = Array.isArray(data) ? data : (data.data || [])
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(fetch)
+watch(() => settings.locale, fetch)
 </script>
+
 <template>
   <div class="space-y-4">
-    <h1 class="text-lg font-bold text-slate-800">CRISIS</h1>
+    <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100">{{ tx('page_crisis') }}</h1>
+    <div v-if="loading" class="text-sm text-slate-400">{{ tx('common_loading') }}</div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-      <div v-for="c in cards" :key="c.title" class="bg-white rounded-xl shadow p-4">
-        <div class="font-bold text-sm mb-2">{{ c.title }}</div>
-        <ol class="list-decimal ml-5 space-y-1 text-xs text-slate-600">
-          <li v-for="s in c.steps" :key="s">{{ s }}</li>
-        </ol>
+      <div v-for="r in rows" :key="r.id" class="bg-white dark:bg-slate-800 rounded-xl shadow dark:shadow-none dark:border dark:border-slate-700 p-4 space-y-2">
+        <div class="font-bold text-sm dark:text-slate-100">{{ r.situation }}</div>
+        <div v-if="r.signs" class="text-xs text-slate-500 dark:text-slate-400"><b>{{ tx('tbl_signs') }}:</b> {{ r.signs }}</div>
+        <div v-if="r.immediate_action" class="text-xs text-slate-700 dark:text-slate-200"><b>{{ tx('tbl_action') }}:</b> {{ r.immediate_action }}</div>
+        <div v-if="r.adult_dose" class="text-xs dark:text-slate-200"><b>{{ tx('tbl_adult_dose') }}:</b> {{ r.adult_dose }}</div>
+        <div v-if="r.monitoring" class="text-xs text-slate-500 dark:text-slate-400"><b>{{ tx('tbl_monitor') }}:</b> {{ r.monitoring }}</div>
+        <div v-if="r.differential" class="text-xs text-slate-500 dark:text-slate-400"><b>{{ tx('tbl_diff') }}:</b> {{ r.differential }}</div>
+        <div v-if="r.note" class="text-xs text-amber-700 dark:text-amber-300">⚠️ {{ r.note }}</div>
       </div>
     </div>
+    <div v-if="!loading && !rows.length" class="text-sm text-slate-400 text-center py-6">{{ tx('common_no_data') }}</div>
     <ClinicalDisclaimer />
   </div>
 </template>

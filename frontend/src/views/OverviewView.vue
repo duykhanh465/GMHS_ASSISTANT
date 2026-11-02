@@ -41,9 +41,9 @@ async function fetchPatients() {
     }
   } catch (e: any) {
     const status = e.response?.status
-    if (status === 401) error.value = 'Phiên hết hạn — đăng nhập lại.'
-    else if (status === 403) error.value = 'Không có quyền xem (403).'
-    else error.value = e.response?.data?.message || e.message || 'Không tải được danh sách bệnh nhân'
+    if (status === 401) error.value = tx.value('overview_session_expired')
+    else if (status === 403) error.value = tx.value('overview_forbidden')
+    else error.value = e.response?.data?.message || e.message || tx.value('overview_load_fail')
   }
 }
 
@@ -63,7 +63,7 @@ async function onCalculate() {
     calc.value = data
     await Promise.all([fetchHistory(), fetchDrugs()])
   } catch (e: any) {
-    error.value = e.response?.data?.message || 'Tính toán thất bại'
+    error.value = e.response?.data?.message || tx.value('overview_calc_fail')
   } finally { loading.value = false }
 }
 
@@ -108,7 +108,7 @@ onMounted(fetchPatients)
       </select>
     </div>
 
-    <div v-if="error && !patient" class="text-sm text-red-600 bg-red-50 border border-red-200 rounded px-3 py-2">{{ error }} <router-link to="/login" class="underline">Đăng nhập lại</router-link> · <router-link to="/patients" class="underline">Sang Bệnh nhân</router-link></div>
+    <div v-if="error && !patient" class="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 rounded px-3 py-2">{{ error }} <router-link to="/login" class="underline">{{ tx('ov_relogin') }}</router-link> · <router-link to="/patients" class="underline">{{ tx('ov_go_patients') }}</router-link></div>
     <div v-if="!patient && !error" class="text-sm text-slate-500 dark:text-slate-400 space-y-1">
       <div>{{ tx('overview_no_patient') }}</div>
     </div>
@@ -130,9 +130,9 @@ onMounted(fetchPatients)
             </div>
           </div>
           <div class="flex flex-wrap gap-1.5 text-[11px]">
-            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">Không hút thuốc</span>
-            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">Không dị ứng thuốc</span>
-            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">Nhịn ăn 8 giờ</span>
+            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">{{ tx('badge_no_smoke') }}</span>
+            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">{{ tx('badge_no_allergy') }}</span>
+            <span class="px-2 py-1 rounded bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-600 dark:text-slate-300">{{ tx('badge_fasting') }}</span>
           </div>
         </div>
 

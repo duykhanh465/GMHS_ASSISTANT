@@ -25,7 +25,7 @@ function onPick(v: Locale) { settings.setLocale(v) }
 </script>
 
 <template>
-  <div class="max-w-3xl mx-auto space-y-5">
+  <div class="w-full max-w-3xl space-y-5 text-left">
     <div>
       <h1 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
         <Languages class="w-5 h-5 opacity-60" /> {{ tx('settings_title') }}

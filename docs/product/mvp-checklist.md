@@ -157,3 +157,17 @@
 - [x] Lưu calculation snapshot.
 - [x] Mở lại calculation snapshot thành công.
 - [x] Doctor khác bị từ chối khi truy cập case này.
+
+---
+
+## 10. Sau MVP (PWA, admin, TTS/CRISIS, i18n dữ liệu)
+
+- [x] PWA: `manifest.webmanifest`, icons, `sw.js`, đăng ký trong `main.ts`.
+- [x] Middleware `admin` + `/api/admin/users|drugs|sources`.
+- [x] Trang `/admin` chỉ hiện với role admin.
+- [x] Bảng `spinal_protocols` (7 dòng sheet Gay_te_TTS) + API + Vue.
+- [x] Bảng `emergency_protocols` (7 dòng sheet Cap_cuu_CRISIS) + API + Vue.
+- [x] Cột `translations` JSON + `?locale=` cho drugs/categories/sources/protocols.
+- [x] Feature tests: Auth, PatientPolicy, Drug, Source, Admin, Protocol.
+- [x] README chạy local, demo account, golden numbers.
+

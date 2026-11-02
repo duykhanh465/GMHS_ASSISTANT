@@ -15,4 +15,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/drugs/{drug}', [\App\Http\Controllers\Api\DrugController::class, 'show']);
     Route::get('/ventilator-presets', [\App\Http\Controllers\Api\VentilatorPresetController::class, 'index']);
     Route::get('/sources', [\App\Http\Controllers\Api\SourceController::class, 'index']);
+    Route::get('/spinal-protocols', [\App\Http\Controllers\Api\SpinalProtocolController::class, 'index']);
+    Route::get('/emergency-protocols', [\App\Http\Controllers\Api\EmergencyProtocolController::class, 'index']);
+
+    Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::apiResource('users', \App\Http\Controllers\Api\Admin\UserController::class)->except(['show']);
+        Route::apiResource('drugs', \App\Http\Controllers\Api\Admin\DrugController::class)->except(['show']);
+        Route::apiResource('sources', \App\Http\Controllers\Api\Admin\SourceController::class)->except(['show']);
+    });
 });

@@ -1,18 +1,53 @@
 # Laravel
 backend/.env
+backend/.env.backup
 backend/vendor/
+backend/node_modules/
+backend/public/build/
+backend/public/hot
+backend/public/storage
+backend/storage/*.key
 backend/storage/logs/
+backend/storage/framework/cache/
+backend/storage/framework/sessions/
+backend/storage/framework/views/
 backend/bootstrap/cache/
+.phpunit.result.cache
+.phpunit.cache/
+Homestead.json
+Homestead.yaml
+auth.json
 
 # Vue 3
 frontend/node_modules/
 frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Logs & debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+
+# Testing & coverage
+coverage/
+.nyc_output/
 
 # Sensitive clinical source files
 docs/clinical/excel-original/
 
+# Local temp dumps (Excel text exports, throwaway scripts)
+Temp/
+
 # Editor and operating system
 .vscode/
 .idea/
+.fleet/
+*.swp
+*.swo
+*~
 .DS_Store
 Thumbs.db

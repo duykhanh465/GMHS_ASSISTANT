@@ -69,7 +69,167 @@ Trong MVP, admin chỉ cần có tài khoản seed sẵn để demo.
 Trang quản lý thuốc, tài liệu nguồn và người dùng sẽ được làm ở phiên bản sau,
 không nằm trong MVP.
 
----
+---Phase 2.2 là phần làm hệ thống đăng nhập và phân quyền người dùng cho GMHS Assistant.
+
+Nói đơn giản:
+
+
+Phase 2.2 = Ai được vào app? Vào bằng gì? Vào rồi được quyền làm gì?
+Trước Phase 2.2
+App của bạn mới chỉ có:
+
+
+Laravel chạy được
+Vue chạy được
+Database chạy được
+Nhưng chưa có:
+
+
+Ai là người dùng?
+Đăng nhập bằng gì?
+Làm sao biết người này là bác sĩ?
+Làm sao biết người này là admin?
+API nào cần đăng nhập mới được gọi?
+Sau Phase 2.2
+App đã có nền tảng auth:
+
+
+Doctor đăng nhập được
+Admin đăng nhập được
+Laravel cấp token cho người đăng nhập
+Token đó dùng để gọi API bảo vệ
+Logout sẽ xóa token
+User có role: admin hoặc doctor
+User có trạng thái: active hoặc inactive
+Cụ thể Phase 2.2 đã làm gì
+1. Cài Sanctum
+Sanctum là hệ thống token auth của Laravel.
+
+Khi bác sĩ đăng nhập đúng email/password, Laravel trả về một token:
+
+
+2|xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Token này giống như “thẻ ra vào”.
+
+Frontend Vue sau này sẽ lưu token đó và gửi kèm mỗi lần gọi API:
+
+
+Authorization: Bearer <token>
+Nhờ vậy Laravel biết:
+
+
+Người đang gọi API là ai?
+Có đăng nhập chưa?
+Role là admin hay doctor?
+2. Thêm role và is_active vào bảng users
+Bạn đã thêm hai cột này:
+
+
+role       = admin hoặc doctor
+is_active  = tài khoản còn hoạt động hay không
+Ý nghĩa:
+
+Cột	Dùng để làm gì
+role	Phân biệt admin và bác sĩ
+is_active	Khóa tài khoản nếu cần
+Ví dụ:
+
+
+GMHS Admin  → role admin
+GMHS Doctor → role doctor
+Sau này:
+
+
+admin  → quản lý dữ liệu thuốc, nguồn, protocol
+doctor → tạo case, tính toán, xem case của chính họ
+3. Tạo tài khoản demo
+Bạn đã seed được:
+
+
+admin@gmhs.test
+doctor@gmhs.test
+Cả hai có password:
+
+
+password
+Đây là tài khoản local để test và demo, không phải tài khoản production.
+
+4. Tạo API login
+Endpoint:
+
+
+POST /api/login
+Bạn test bằng:
+
+
+Invoke-RestMethod -Method Post -Uri http://localhost:8000/api/login ...
+Khi đúng email/password, Laravel trả về:
+
+
+user
+token
+Nghĩa là app đã biết bác sĩ nào vừa đăng nhập.
+
+5. Tạo API /api/me
+Endpoint:
+
+
+GET /api/me
+API này yêu cầu có token mới gọi được.
+
+Bạn đã test thành công và nhận:
+
+
+id        : 5
+name      : GMHS Doctor
+email     : doctor@gmhs.test
+role      : doctor
+is_active : True
+Điều này chứng minh:
+
+
+Token hợp lệ
+Laravel nhận ra user hiện tại
+Route auth:sanctum hoạt động
+6. Tạo API logout
+Endpoint:
+
+
+POST /api/logout
+Nó xóa token hiện tại.
+
+Sau khi logout, token cũ không dùng được nữa. Nếu gọi lại /api/me, Laravel phải báo:
+
+
+Unauthenticated
+Vì sao Phase 2.2 quan trọng
+Vì toàn bộ app sau này sẽ dựa vào nó.
+
+Ví dụ Phase 2.3 tạo bảng patients, thì phải có rule:
+
+
+Doctor A chỉ xem bệnh nhân/case của Doctor A
+Doctor B không xem được case của Doctor A
+Admin xem được tất cả
+Muốn làm được rule đó, trước tiên phải có:
+
+
+Đăng nhập
+Token
+User hiện tại
+Role admin/doctor
+Đó chính là Phase 2.2.
+
+Hình dung dễ hiểu
+GMHS Assistant giống một bệnh viện nhỏ:
+
+
+Phase 1: xây tòa nhà, bật điện, có database
+Phase 2.2: làm cổng ra vào, thẻ nhân viên, phân biệt bác sĩ và admin
+Phase 2.3: bắt đầu tạo hồ sơ bệnh nhân/case
+Phase 3: làm máy tính công thức y khoa
+Phase 4: đưa thuốc và máy thở từ Excel vào database
+Bạn hiện đã làm gần xong phần “cổng ra vào + thẻ nhân viên”. Chỉ cần test logout thành công là Phase 2.2 hoàn tất.
 
 ## 4. Luồng sử dụng chính
 

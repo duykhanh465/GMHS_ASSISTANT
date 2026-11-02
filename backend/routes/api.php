@@ -1,0 +1,26 @@
+<?php
+
+use App\Http\Controllers\Api\AuthController;
+use Illuminate\Support\Facades\Route;
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::apiResource('patients', \App\Http\Controllers\Api\PatientController::class);
+    Route::post('/patients/{patient}/calculate', [\App\Http\Controllers\Api\CalculationController::class, 'calculate']);
+    Route::get('/patients/{patient}/calculations', [\App\Http\Controllers\Api\CalculationController::class, 'history']);
+    Route::get('/drugs', [\App\Http\Controllers\Api\DrugController::class, 'index']);
+    Route::get('/drugs/{drug}', [\App\Http\Controllers\Api\DrugController::class, 'show']);
+    Route::get('/ventilator-presets', [\App\Http\Controllers\Api\VentilatorPresetController::class, 'index']);
+    Route::get('/sources', [\App\Http\Controllers\Api\SourceController::class, 'index']);
+    Route::get('/spinal-protocols', [\App\Http\Controllers\Api\SpinalProtocolController::class, 'index']);
+    Route::get('/emergency-protocols', [\App\Http\Controllers\Api\EmergencyProtocolController::class, 'index']);
+
+    Route::middleware('admin')->prefix('admin')->group(function () {
+        Route::apiResource('users', \App\Http\Controllers\Api\Admin\UserController::class)->except(['show']);
+        Route::apiResource('drugs', \App\Http\Controllers\Api\Admin\DrugController::class)->except(['show']);
+        Route::apiResource('sources', \App\Http\Controllers\Api\Admin\SourceController::class)->except(['show']);
+    });
+});
